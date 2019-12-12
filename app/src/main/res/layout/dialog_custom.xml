@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    android:background="#00BCD4"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Đăng nhập hệ thống"
+        android:textSize="30dp"
+        android:layout_centerHorizontal="true"
+        android:textColor="#F44336"
+        android:id="@+id/textView1"
+        />
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Username"
+        android:gravity="center"
+        android:textSize="30dp"
+        android:layout_centerHorizontal="true"
+        android:textColor="#F44336"
+        android:id="@+id/editText1"
+        android:layout_marginTop="20dp"
+        android:layout_below="@id/textView1"
+        />
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Password"
+        android:gravity="center"
+        android:textSize="30dp"
+        android:layout_centerHorizontal="true"
+        android:textColor="#F44336"
+        android:id="@+id/editText2"
+        android:layout_marginTop="20dp"
+        android:layout_below="@id/editText1"
+        />
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="đồng ý"
+        android:gravity="center"
+        android:textSize="30dp"
+        android:textColor="#F44336"
+        android:id="@+id/butTon2"
+        android:layout_marginTop="20dp"
+        android:layout_below="@id/editText2"
+        />
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Hủy"
+        android:gravity="center"
+        android:textSize="30dp"
+        android:textColor="#F44336"
+        android:id="@+id/butTon3"
+        android:layout_marginTop="20dp"
+        android:layout_below="@id/editText2"
+        android:layout_alignParentRight="true"
+        />
+</RelativeLayout>
