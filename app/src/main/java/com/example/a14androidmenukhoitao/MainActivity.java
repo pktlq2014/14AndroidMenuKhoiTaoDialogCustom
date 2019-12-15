@@ -2,8 +2,12 @@ package com.example.a14androidmenukhoitao;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.ShareActionProvider;
+import androidx.core.view.ActionProvider;
+import androidx.core.view.MenuItemCompat;
 
 import android.app.Dialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.ContextMenu;
 import android.view.Menu;
@@ -14,14 +18,17 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.PopupMenu;
 import android.widget.RelativeLayout;
+import android.widget.SearchView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class MainActivity extends AppCompatActivity
+public class MainActivity extends AppCompatActivity implements SearchView.OnQueryTextListener
 {
     Button butTon1, butTon2, butTon3;
     TextView textView1;
     RelativeLayout relativeLayout;
+    // share
+    ShareActionProvider shareActionProvider;
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -111,13 +118,33 @@ public class MainActivity extends AppCompatActivity
         });
         popupMenu.show();
     }
+    // gọi dòng này ra ms hiện menu
     @Override
     public boolean onCreateOptionsMenu(Menu menu)
     {
         getMenuInflater().inflate(R.menu.menu_demo, menu);
+        // searchview
+        MenuItem menuItem = menu.findItem(R.id.itSearchView);
+        SearchView searchView = (SearchView) menuItem.getActionView();
+        searchView.setOnQueryTextListener(MainActivity.this);
+        // provider
+        MenuItem provider = menu.findItem(R.id.itProvider);
+        shareActionProvider = (ShareActionProvider) MenuItemCompat.getActionProvider(provider);
+        shareActionProvider.setOnShareTargetSelectedListener(new ShareActionProvider.OnShareTargetSelectedListener()
+        {
+            @Override
+            public boolean onShareTargetSelected(ShareActionProvider source, Intent intent)
+            {
+                Intent intent1 = new Intent(Intent.ACTION_SEND);
+                intent1.setType("text/plain");
+                intent1.putExtra(Intent.EXTRA_TEXT, "Hello !");
+                shareActionProvider.setShareIntent(intent);
+                return false;
+            }
+        });
         return super.onCreateOptionsMenu(menu);
     }
-
+    // thiết lập chức năng khi click vào menu
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item)
     {
@@ -133,7 +160,25 @@ public class MainActivity extends AppCompatActivity
                 Toast.makeText(MainActivity.this, "Bạn Chọn Share", Toast.LENGTH_SHORT).show();
                 break;
             }
+            case R.id.itSearchView:
+            {
+                Toast.makeText(MainActivity.this, "Bạn Chọn SearchView", Toast.LENGTH_SHORT).show();
+                break;
+            }
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public boolean onQueryTextSubmit(String query)
+    {
+        return false;
+    }
+    // hiện dữ liệu khi nhập vào thành searchview
+    @Override
+    public boolean onQueryTextChange(String newText)
+    {
+        Toast.makeText(MainActivity.this, newText, Toast.LENGTH_SHORT).show();
+        return false;
     }
 }

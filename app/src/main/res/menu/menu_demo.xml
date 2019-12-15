@@ -1,14 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
-<!--    tách setting thành 1 icon-->
+<!--phần này lỗi chủ yếu là do ảnh icon search-->
+    <item
+        android:title="Search View"
+        android:icon="@drawable/search"
+        app:showAsAction="ifRoom|collapseActionView"
+        android:id="@+id/itSearchView"
+        app:actionViewClass="android.widget.SearchView"
+        />
+<!--    phần provider lỗi do actionProviderclass, bỏ collap cũng dc-->
+    <item
+        android:id="@+id/itProvider"
+        android:title="Shares"
+        app:showAsAction="ifRoom|collapseActionView"
+        app:actionProviderClass="androidx.appcompat.widget.ShareActionProvider"
+        />
+    <!--    tách setting thành 1 icon-->
     <item
         android:title="Settings"
         android:icon="@android:drawable/ic_menu_add"
         app:showAsAction="always"
         android:id="@+id/menuSettings"
         />
-
     <item
         android:title="Share"
         android:orderInCategory="1"
@@ -35,4 +49,6 @@
                 />
         </menu>
     </item>
+
+
 </menu>
